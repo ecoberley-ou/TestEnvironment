@@ -44,6 +44,9 @@ public class App
    // FIXME
 
       List<Integer> comparison = new ArrayList<>();
+      for (int i = 0; i < list.size() - 1; ++i) {
+    	  comparison.add(list.get(i).compareTo(list.get(i+1)));
+      }
         return checkOrder(comparison);
     }
     
@@ -61,17 +64,27 @@ public class App
         // otherwise return that they have no order
 
       // FIXME
-        return NORDER;
+    	
+    	Set<Integer> set = new HashSet<>();
+    	for (int i = 0; i < list.size(); ++i) {
+    		set.add(list.get(i));
+    	}
+    	if (set.contains(-1) && !set.contains(1) && !set.contains(0)) return AFTER;
+    	else if (set.contains(1) && !set.contains(-1) && !set.contains(0)) return BEFORE;
+    	else if (set.contains(0) && !set.contains(1) && !set.contains(-1)) return EQUAL;
+    	else return NORDER;
     }
 
    // check with the unit tests
     public static String describe(int value){
       //FIXME
-      if (true)
-         System.out.println("Remove and fix!!!! - if you see this, things are wrong");
-      else if (value == -999) return UNORGANIZED;
-        return UNEXPECTED;
+    	if (value == -1) return ASCENDING;
+    	else if (value == 1) return DESCENDING;
+    	else if (value == 0) return EQUALS;
+    	else if (value == -999) return UNORGANIZED;
+    	else return UNEXPECTED;
     }
+    
     public static void main( String[] args )
     {
         System.out.println("Hello Fellow Programmer!");
