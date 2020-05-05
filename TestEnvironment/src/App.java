@@ -69,6 +69,7 @@ public class App
     	for (int i = 0; i < list.size(); ++i) {
     		set.add(list.get(i));
     	}
+    	
     	if (set.contains(-1) && !set.contains(1) && !set.contains(0)) return AFTER;
     	else if (set.contains(1) && !set.contains(-1) && !set.contains(0)) return BEFORE;
     	else if (set.contains(0) && !set.contains(1) && !set.contains(-1)) return EQUAL;
