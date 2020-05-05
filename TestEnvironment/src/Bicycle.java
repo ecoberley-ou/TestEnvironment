@@ -61,10 +61,10 @@ public class Bicycle extends Vehicle implements Comparable<Bicycle>{
     public boolean isBetter(Object o) {
       // FIXME
       // remember to use isBetter from Vehicle
-    	if (((Bicycle) o).getGears() < this.gears) return true;
-    	else if (((Bicycle) o).getGears() > this.gears) return false;
+    	if ((this.gears > ((Bicycle) o).getGears())) return true;
+    	else if ((this.gears < ((Bicycle) o).getGears())) return false;
     	else {
-    		if (((Vehicle) o).getWeight() < this.getWeight()) return true;
+    		if (this.getWeight() < ((Vehicle) o).getWeight()) return true;
         	else return false;
     	}
     }

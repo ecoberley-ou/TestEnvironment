@@ -4,29 +4,27 @@
 public class Car extends Vehicle implements Comparable<Car>{
     private double price;
 
-    public Car(double weight, double price) throws PriceException, 
-                                                    WeightException {
+    public Car(double weight, double price) throws PriceException, WeightException {
         super(weight);
         this.setPrice(price);
     }
     
         public double getPrice() {
-        return 10.0;
+        return price;
     }
     
     // if the price is negative throw an exception
         public void setPrice(double price) throws PriceException {
-         // FIXME
-            String msg = "[ERROR] Price cannot be negative";
-            //throw new PriceException(msg);
-
-        this.price = 200.0;
+        	if (price < 0) {
+        		String msg = "[ERROR] Price cannot be negative";
+        		throw new PriceException(msg);
+        	}
+        	else this.price = price;
     }
     
         @Override
     public String toString() {
-        String str = super.toString();
-        str = "defintely have to fix this";
+        String str = "{ weight='" + this.getWeight() + "', price='" + this.price + "'}";
         return str;
     }
         /* 
@@ -40,8 +38,9 @@ public class Car extends Vehicle implements Comparable<Car>{
         final int BEFORE = -1;
         final int EQUAL = 0;
         final int AFTER = 1;
-        // FIXME
-         return 9;
+        if (this.price < c.getPrice()) return BEFORE;
+        else if (this.price > c.getPrice()) return AFTER;
+        else return EQUAL;
     }
     
         /*
@@ -52,8 +51,12 @@ public class Car extends Vehicle implements Comparable<Car>{
     */
     @Override
     public boolean isBetter(Object o) {
-      //FIXME
-        return false;
+      if (this.price > ((Car) o).getPrice()) return true;
+      else if (this.price < ((Car) o).getPrice()) return false;
+      else {
+    	  if (((Vehicle) o).getWeight() > this.getWeight()) return true;
+    	  else return false;
+      }
     }
     
         /*
@@ -63,15 +66,21 @@ public class Car extends Vehicle implements Comparable<Car>{
     */
     @Override
     public boolean isWorst(Object o) {
-         // FIXME
-        return false;
+    	
+	      if (this.price < ((Car) o).getPrice()) return true;
+	      else if (this.price > ((Car) o).getPrice()) return false;
+	      else {
+	    	  if (((Vehicle) o).getWeight() < this.getWeight()) return true;
+	    	  else return false;
+	      }
+	    
     }
     
     // need a license to drive
     //FIXME
     @Override
     public boolean needLicense() {
-        return false;
+        return true;
     }
     
 }
