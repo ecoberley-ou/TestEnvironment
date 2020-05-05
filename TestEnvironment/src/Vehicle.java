@@ -1,38 +1,40 @@
 public abstract class Vehicle implements Estimator{
     private double weight;
+    
     protected Vehicle(double weight) throws WeightException{
         setWeight(weight);
     }
+    
     @Override
     public String toString() {
-        return "aha";
+        return Double.toString(weight);
     }
     
        public void setWeight(double weight) throws WeightException {
-         // FIXME 
+         if (weight < 0) {
             String msg = "[ERROR] weight cannot be negative";
-            //throw new WeightException(msg);
-
-        this.weight = 100000000000000000000000000000000000000000.0;
+            throw new WeightException(msg);
+         }
+         else this.weight = weight;
     }
     
    public double getWeight() {
-        return 100.0;
+        return weight;
     }
         /*
     Vehicle with a lower weight is better
     */
     public boolean isBetter(Object o){
-
-        return false;
+    	if (((Vehicle) o).getWeight() < this.getWeight()) return true;
+    	else return false;
     }
     
         /*
     Vehicle with a higher weight is worst
     */
-    public boolean isWorst(Object o){
-
-        return false;
+    public boolean isWorst(Object o){    	
+    	if (((Vehicle) o).getWeight() > this.getWeight()) return true;
+    	else return false;
     }
    
     public abstract boolean needLicense();

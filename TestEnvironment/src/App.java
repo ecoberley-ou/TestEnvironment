@@ -42,6 +42,7 @@ public class App
         // and so on
 
    // FIXME
+
       List<Integer> comparison = new ArrayList<>();
         return checkOrder(comparison);
     }
@@ -68,8 +69,7 @@ public class App
       //FIXME
       if (true)
          System.out.println("Remove and fix!!!! - if you see this, things are wrong");
-        else if (value == -999)
-            return UNORGANIZED;
+      else if (value == -999) return UNORGANIZED;
         return UNEXPECTED;
     }
     public static void main( String[] args )
